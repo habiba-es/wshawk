@@ -1100,7 +1100,7 @@ class WSHawk:
 
 async def main():
     """
-    Main entry point with interactive UI
+    Main entry point - uses advanced scanner_v2
     """
     import sys
     
@@ -1120,22 +1120,18 @@ async def main():
         Logger.error("URL must start with ws:// or wss://")
         return
     
-    # Create scanner
-    scanner = WSHawk(target_url)
+    # Use advanced scanner_v2
+    from .scanner_v2 import WSHawkV2
     
-    # Run scan
-    report = await scanner.run_all_tests()
+    Logger.info("Using WSHawk v2.0 Advanced Scanner")
+    scanner = WSHawkV2(target_url, max_rps=10)
     
-    # Generate HTML report
-    print()
-    scanner.generate_html_report()
+    # Enable all features
+    scanner.use_headless_browser = False  # Disable by default (requires playwright install)
+    scanner.use_oast = True
     
-    # Print JSON report
-    print()
-    print("="*60)
-    print("JSON REPORT")
-    print("="*60)
-    print(json.dumps(report, indent=2))
+    # Run intelligent scan
+    await scanner.run_intelligent_scan()
 
 
 

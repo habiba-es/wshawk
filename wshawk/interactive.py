@@ -91,7 +91,7 @@ async def main():
     show_menu()
     
     # Get user choice
-    print(f"{Colors.CYAN}Enter test numbers (comma-separated, e.g., 1,2,3 or 8 for all):{Colors.END}")
+    print(f"{Colors.CYAN}Enter test numbers (comma-separated, e.g., 1,2,3 or 99 for all):{Colors.END}")
     choice = input(f"{Colors.YELLOW}> {Colors.END}").strip()
     
     if choice == '0':
@@ -101,55 +101,40 @@ async def main():
     # Parse choices
     choices = [c.strip() for c in choice.split(',')]
     
-    # All tests use ALL payloads (max_payloads=None)
-    max_payloads = None
-    
     if '99' in choices:
-        Logger.warning("FULL SCAN mode - running ALL tests with ALL payloads!")
+        Logger.warning("FULL SCAN mode - running ALL tests!")
         Logger.warning("This may take several minutes...")
-    else:
-        Logger.info("Individual test mode - using ALL payloads for selected tests")
     
-    # Create scanner with max_payloads parameter
-    scanner = WSHawk(url, max_payloads=max_payloads)
-    scanner.start_time = __import__('datetime').datetime.now()
+    # Use advanced scanner_v2
+    from .scanner_v2 import WSHawkV2
     
     Logger.info(f"Target: {url}")
-    Logger.info("Starting selected tests...")
-    print()
+    Logger.info("Using WSHawk v2.0 Advanced Scanner")
     
-    # Test connection first
-    if not await scanner.test_connection():
-        Logger.error("Cannot proceed without valid connection")
-        return
+    scanner = WSHawkV2(url, max_rps=10)
+    scanner.use_headless_browser = False  # Disable by default
+    scanner.use_oast = True
     
-    print()
+    # Run intelligent scan (includes all v1.0 tests + v2.0 features)
+    await scanner.run_intelligent_scan()
     
-    # Run selected tests
-    await run_selected_tests(scanner, choices)
-    
-    scanner.end_time = __import__('datetime').datetime.now()
-    duration = (scanner.end_time - scanner.start_time).total_seconds()
-    
-    print()
-    Logger.success(f"Scan complete in {duration:.2f}s")
-    Logger.info(f"Messages sent: {scanner.messages_sent}")
-    Logger.info(f"Messages received: {scanner.messages_received}")
+    Logger.success("Scan complete!")
     Logger.info(f"Vulnerabilities found: {len(scanner.vulnerabilities)}")
     
-    # Generate report
-    scanner.generate_html_report()
-    
     # Show summary
-    report = scanner.generate_report()
     print()
     print("="*60)
     print("VULNERABILITY SUMMARY")
     print("="*60)
-    print(f"Total: {report['summary']['total']}")
-    print(f"Critical: {report['summary']['critical']}")
-    print(f"High: {report['summary']['high']}")
-    print(f"Medium: {report['summary']['medium']}")
+    
+    if scanner.vulnerabilities:
+        for level in ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']:
+            count = sum(1 for v in scanner.vulnerabilities if v.get('confidence') == level)
+            if count > 0:
+                print(f"{level}: {count}")
+    else:
+        print("No vulnerabilities found")
+    
     print("="*60)
 
 

@@ -1,145 +1,182 @@
-# WSHawk - WebSocket Security Scanner
-## Overview
+# WSHawk v2.0 - Professional WebSocket Security Scanner
 
-WSHawk is an automated security testing tool designed to identify vulnerabilities in WebSocket implementations. It includes comprehensive payload databases covering SQL injection, XSS, command injection, and other common attack vectors.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PyPI version](https://badge.fury.io/py/wshawk.svg)](https://badge.fury.io/py/wshawk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Playwright](https://img.shields.io/badge/Playwright-Supported-green.svg)](https://playwright.dev/)
+[![Status: Production](https://img.shields.io/badge/status-production-green.svg)](https://github.com/noobforanonymous/wshawk)
+
+**WSHawk v2.0** is a production-grade WebSocket security scanner with advanced features including real vulnerability verification, intelligent mutation, and comprehensive session security testing.
+
+## Why WSHawk?
+
+WSHawk is the only open-source WebSocket scanner that provides:
+- **Real browser XSS verification** (Playwright) - Not just pattern matching
+- **Blind vulnerability detection** via OAST - Finds XXE, SSRF that others miss
+- **Session hijacking analysis** - 6 advanced session security tests
+- **WAF-aware payload mutation** - Intelligent evasion techniques
+- **CVSS-based professional reporting** - Industry-standard risk assessment
 
 ## Features
 
-- Automated vulnerability scanning for WebSocket endpoints
-- 22,634 attack payloads across 10 vulnerability categories
-- 13 different security test modules
-- Interactive command-line interface
-- HTML report generation
-- Asynchronous testing for improved performance
-- Origin validation bypass detection
+- ✅ **22,000+ Attack Payloads** - Comprehensive vulnerability coverage
+- ✅ **Real Vulnerability Verification** - Confirms exploitability, not just reflection
+- ✅ **Playwright XSS Verification** - Actual browser-based script execution testing
+- ✅ **OAST Integration** - Detects blind vulnerabilities (XXE, SSRF)
+- ✅ **Session Hijacking Tests** - Token reuse, impersonation, privilege escalation
+- ✅ **Intelligent Mutation Engine** - WAF bypass with 8+ evasion strategies
+- ✅ **CVSS v3.1 Scoring** - Automatic vulnerability risk assessment
+- ✅ **Professional HTML Reports** - Screenshots, replay sequences, traffic logs
+- ✅ **Adaptive Rate Limiting** - Server-friendly scanning
+
+### Vulnerability Detection
+SQL Injection • XSS • Command Injection • XXE • SSRF • NoSQL Injection • Path Traversal • LDAP Injection • SSTI • Open Redirect • Session Security Issues
 
 ## Installation
 
-### Option 1: Install via pip (Recommended)
-
 ```bash
 pip install wshawk
+
+# Optional: For browser-based XSS verification
+playwright install chromium
 ```
 
-### Option 2: Install from source
+## Quick Start
 
-#### Linux / macOS
+WSHawk provides **3 easy ways** to scan WebSocket applications:
 
+### Method 1: Quick Scan (Fastest)
 ```bash
-git clone https://github.com/noobforanonymous/wshawk.git
-cd wshawk
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+wshawk ws://target.com
 ```
+Perfect for CI/CD pipelines and quick security assessments.
 
-### Windows
-
-```bash
-git clone https://github.com/noobforanonymous/wshawk.git
-cd wshawk
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-## Usage
-
-### Interactive Mode (Recommended)
-
-If installed via pip:
+### Method 2: Interactive Menu (User-Friendly)
 ```bash
 wshawk-interactive
 ```
+Shows interactive menu to select specific tests. Best for learning and manual testing.
 
-If running from source:
+### Method 3: Advanced CLI (Full Control)
 ```bash
-python wshawk_interactive.py
+# Basic scan
+wshawk-advanced ws://target.com
+
+# With Playwright XSS verification
+wshawk-advanced ws://target.com --playwright
+
+# Custom rate limiting
+wshawk-advanced ws://target.com --rate 5
+
+# All features enabled
+wshawk-advanced ws://target.com --full
 ```
 
-Follow the prompts to:
-1. Enter the target WebSocket URL
-2. Select which tests to run
-3. Review results in the generated HTML report
+## Command Comparison
 
-### Direct Mode
+| Feature | `wshawk` | `wshawk-interactive` | `wshawk-advanced` |
+|---------|----------|----------------------|-------------------|
+| Ease of Use | ★★★ | ★★★ | ★★ |
+| Flexibility | ★ | ★★ | ★★★ |
+| All Features | ✓ | ✓ | ✓ |
+| Menu Selection | ✗ | ✓ | ✗ |
+| CLI Options | ✗ | ✗ | ✓ |
+| Best For | Automation | Learning | Advanced Users |
 
-If installed via pip:
-```bash
-wshawk wss://target.example.com/socket
-```
+## What You Get
 
-If running from source:
-```bash
-python wshawk.py wss://target.example.com/socket
-```
-
-## Test Modules
-
-The scanner includes the following test modules:
-
-1. Origin Validation Bypass - Tests for Cross-Site WebSocket Hijacking
-2. SQL Injection - Database injection attacks
-3. Cross-Site Scripting - XSS payload testing
-4. Command Injection - OS command execution tests
-5. NoSQL Injection - NoSQL database attacks
-6. LDAP Injection - Directory service vulnerabilities
-7. Path Traversal - File system access attempts
-8. Server Side Template Injection - Template engine exploits
-9. XML External Entity - XXE vulnerability detection
-10. Open Redirect - URL redirection issues
-11. Message Replay - Replay attack detection
-12. Rate Limiting - Abuse prevention verification
-13. Authentication Bypass - Authentication validation
-
-## Finding WebSocket Endpoints
-
-Use browser developer tools to identify WebSocket connections:
-
-1. Open Developer Tools (F12)
-2. Navigate to the Network tab
-3. Filter by WS (WebSocket)
-4. Identify connections starting with ws:// or wss://
-
-Common WebSocket endpoint patterns:
-- /ws
-- /socket
-- /chat
-- /notifications
-- /live
-- /updates
+All methods include:
+- Real vulnerability verification (not just pattern matching)
+- 22,000+ attack payloads
+- Intelligent mutation engine with WAF bypass
+- CVSS v3.1 scoring for all findings
+- Session hijacking tests (6 security tests)
+- Professional HTML reports
+- Adaptive rate limiting
+- OAST integration for blind vulnerabilities
+- Optional Playwright for browser-based XSS verification
 
 ## Output
 
-Test results are saved to `wshawk_report.html` with detailed information about:
-- Vulnerability type and severity
-- Successful payloads
-- Affected endpoints
-- Remediation recommendations
+WSHawk generates comprehensive HTML reports with:
+- CVSS v3.1 scores for all vulnerabilities
+- Screenshots (for XSS browser verification)
+- Message replay sequences
+- Raw WebSocket traffic logs
+- Server fingerprints
+- Actionable remediation recommendations
 
-## Requirements
+Reports saved as: `wshawk_report_YYYYMMDD_HHMMSS.html`
 
-- Python 3.8 or higher
-- websockets library
+## Advanced Options
 
-## Legal Disclaimer
+```bash
+wshawk-advanced --help
 
-**IMPORTANT - READ BEFORE USE:**
+Options:
+  --playwright     Enable browser-based XSS verification
+  --rate N         Set max requests per second (default: 10)
+  --full           Enable ALL features
+  --no-oast        Disable OAST testing
+```
 
-This tool is designed exclusively for authorized security testing and research purposes. By using WSHawk, you agree to the following terms:
+## Documentation
 
-- You must have explicit written permission from the system owner before conducting any security tests
-- This tool should only be used on systems you own or have been authorized to test
-- Unauthorized access to computer systems is illegal and may result in criminal prosecution
-- The author and contributors are not responsible for any misuse or damage caused by this tool
-- This tool is provided "as-is" for educational and professional security testing purposes only
+- [Getting Started Guide](docs/getting_started.md)
+- [Advanced Usage](docs/advanced_usage.md)
+- [Vulnerability Details](docs/vulnerabilities.md)
+- [Session Security Tests](docs/session_tests.md)
+- [Mutation Engine](docs/mutation_engine.md)
+- [Architecture](docs/architecture.md)
 
-**Violation of these terms may result in severe legal consequences. Use responsibly.**
+## Python API
 
-## Author
+For integration into custom scripts:
 
-Created by Regaan (@noobforanonymous)
+```python
+import asyncio
+from wshawk.scanner_v2 import WSHawkV2
+
+scanner = WSHawkV2("ws://target.com")
+scanner.use_headless_browser = True
+scanner.use_oast = True
+asyncio.run(scanner.run_intelligent_scan())
+```
+
+See [Advanced Usage](docs/advanced_usage.md) for more examples.
+
+## Responsible Disclosure
+
+WSHawk is designed for:
+- ✓ Authorized penetration testing
+- ✓ Bug bounty programs
+- ✓ Security research
+- ✓ Educational purposes
+
+**Always obtain proper authorization before testing.**
 
 ## License
 
-For educational and authorized security testing purposes only.
+MIT License - see [LICENSE](LICENSE) file
+
+## Author
+
+**Regaan** (@noobforanonymous)
+
+Powered by Google Deepmind Gemini
+
+## Contributing
+
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## Support
+
+- **Issues:** [GitHub Issues](https://github.com/noobforanonymous/wshawk/issues)
+- **Documentation:** [docs/](docs/)
+- **Examples:** [examples/](examples/)
+
+---
+
+**WSHawk v2.0** - Professional WebSocket Security Scanner
+
+*Built for the security community*

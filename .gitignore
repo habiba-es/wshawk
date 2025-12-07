@@ -19,11 +19,13 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Virtual Environment
 venv/
-ENV/
 env/
+ENV/
+.venv
 
 # IDE
 .vscode/
@@ -31,15 +33,60 @@ env/
 *.swp
 *.swo
 *~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Logs
+*.log
+logs/
+*.out
+
+# Reports (generated during scans)
+wshawk_report_*.html
+*.html
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Plugin cache
+.plugin_cache/
+
+# OAST data
+oast_data/
+*.oast
+
+# Session data
+sessions/
+*.session
+
+# Playwright
+.playwright/
 
 # OS
-.DS_Store
 Thumbs.db
+.DS_Store
 
-# Reports
-wshawk_report.html
+# Project specific
+test_results/
+scan_results/
+*.pcap
+*.har
 
-# Git
-.git/
-PROJECT_SUMMARY.md
-PYPI_PUBLISH.md
+# Secrets (never commit)
+*.key
+*.pem
+*.crt
+secrets.json
+config.secret.json
+
+# Documentation builds
+docs/_build/
+site/

@@ -9,27 +9,19 @@ with open("README.md", "r", encoding="utf-8") as fh:
 with open("requirements.txt", "r", encoding="utf-8") as fh:
     requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
-# Collect all payload files
-payload_files = []
-payloads_dir = "payloads"
-if os.path.exists(payloads_dir):
-    for filename in os.listdir(payloads_dir):
-        if filename.endswith(".txt"):
-            payload_files.append(os.path.join(payloads_dir, filename))
-
 setup(
     name="wshawk",
-    version="1.0.0",
+    version="2.0.0",
     author="Regaan",
-    author_email="webdevelopment123.0.0.1@gmail.com",
-    description="Advanced WebSocket security scanner with 22,000+ attack payloads",
+    description="Professional WebSocket security scanner with real vulnerability verification, session hijacking tests, and CVSS scoring",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/noobforanonymous/wshawk",
-    packages=find_packages(),
+    packages=find_packages(exclude=["tests", "tests.*", "examples", "examples.*", "docs"]),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Information Technology",
+        "Intended Audience :: Developers",
         "Topic :: Security",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
@@ -38,22 +30,28 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
     ],
     python_requires=">=3.8",
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "wshawk=wshawk:main",
-            "wshawk-interactive=wshawk_interactive:main",
+            "wshawk=wshawk.__main__:main",
+            "wshawk-interactive=wshawk.interactive:cli",
+            "wshawk-advanced=wshawk.advanced_cli:cli",
         ],
     },
     include_package_data=True,
     package_data={
-        "": ["payloads/*.txt"],
+        "wshawk": [
+            "payloads/*.txt",
+            "payloads/**/*.json",
+        ],
     },
-    keywords="websocket security scanner penetration-testing bug-bounty vulnerability",
+    keywords="websocket security scanner penetration-testing bug-bounty vulnerability xss sqli session-hijacking cvss playwright oast waf-bypass",
     project_urls={
         "Bug Reports": "https://github.com/noobforanonymous/wshawk/issues",
         "Source": "https://github.com/noobforanonymous/wshawk",
+        "Documentation": "https://github.com/noobforanonymous/wshawk/blob/main/README.md",
     },
 )

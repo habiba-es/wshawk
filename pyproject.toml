@@ -4,16 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wshawk"
-version = "1.0.6"
+version = "2.0.0"
 authors = [
     {name = "Regaan"}
 ]
-description = "Advanced WebSocket security scanner with 22,000+ attack payloads"
+description = "Professional WebSocket security scanner with real vulnerability verification, session hijacking tests, and CVSS scoring"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Information Technology",
+    "Intended Audience :: Developers",
     "Topic :: Security",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
@@ -22,10 +23,13 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
-keywords = ["websocket", "security", "scanner", "penetration-testing", "bug-bounty", "vulnerability"]
+keywords = ["websocket", "security", "scanner", "penetration-testing", "bug-bounty", "vulnerability", "xss", "sqli", "session-hijacking", "cvss", "playwright", "oast", "waf-bypass"]
 dependencies = [
-    "websockets",
+    "websockets>=12.0",
+    "playwright>=1.40.0",
+    "aiohttp>=3.9.0",
 ]
 
 [project.urls]
@@ -34,12 +38,12 @@ Homepage = "https://github.com/noobforanonymous/wshawk"
 Source = "https://github.com/noobforanonymous/wshawk"
 
 [project.scripts]
-wshawk = "wshawk.__main__:cli"
+wshawk = "wshawk.__main__:main"
 wshawk-interactive = "wshawk.interactive:cli"
+wshawk-advanced = "wshawk.advanced_cli:cli"
 
 [tool.setuptools]
-packages = ["wshawk"]
-include-package-data = true
+packages = {find = {}}
 
 [tool.setuptools.package-data]
-"wshawk" = ["payloads/*.txt"]
+"wshawk" = ["payloads/*.txt", "payloads/**/*.json"]
