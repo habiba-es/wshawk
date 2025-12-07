@@ -163,8 +163,6 @@ MIT License - see [LICENSE](LICENSE) file
 
 **Regaan** (@noobforanonymous)
 
-Powered by Google Deepmind Gemini
-
 ## Contributing
 
 Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md)
