@@ -2,7 +2,7 @@
 
 All notable changes to WSHawk will be documented in this file.
 
-## [2.0.2] - 2025-12-07
+## [2.0.3] - 2025-12-07
 
 ### Fixed
 - Version mismatch between `__init__.py` and package files (now all 2.0.2)
