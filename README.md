@@ -15,7 +15,15 @@ WSHawk is an automated security testing tool designed to identify vulnerabilitie
 
 ## Installation
 
-### Linux / macOS
+### Option 1: Install via pip (Recommended)
+
+```bash
+pip install wshawk
+```
+
+### Option 2: Install from source
+
+#### Linux / macOS
 
 ```bash
 git clone https://github.com/noobforanonymous/wshawk.git
@@ -37,8 +45,14 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Interactive Mode
+### Interactive Mode (Recommended)
 
+If installed via pip:
+```bash
+wshawk-interactive
+```
+
+If running from source:
 ```bash
 python wshawk_interactive.py
 ```
@@ -50,6 +64,12 @@ Follow the prompts to:
 
 ### Direct Mode
 
+If installed via pip:
+```bash
+wshawk wss://target.example.com/socket
+```
+
+If running from source:
 ```bash
 python wshawk.py wss://target.example.com/socket
 ```
