@@ -79,9 +79,25 @@ class WSPayloads:
             return WSPayloads._payloads_cache[filename]
         
         try:
-            filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'payloads', filename)
-            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-                payloads = [line.strip() for line in f if line.strip()]
+            # Try importlib.resources first (for pip-installed packages)
+            try:
+                if hasattr(__import__('importlib.resources'), 'files'):
+                    # Python 3.9+
+                    from importlib.resources import files
+                    payload_file = files('wshawk').joinpath('payloads', filename)
+                    payloads = payload_file.read_text(encoding='utf-8', errors='ignore').strip().split('\n')
+                else:
+                    # Python 3.8
+                    from importlib.resources import read_text
+                    content = read_text('wshawk.payloads', filename, encoding='utf-8', errors='ignore')
+                    payloads = content.strip().split('\n')
+            except (ImportError, FileNotFoundError, TypeError):
+                # Fallback to file system (for development/source install)
+                filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'payloads', filename)
+                with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                    payloads = [line.strip() for line in f if line.strip()]
+            
+            payloads = [p.strip() for p in payloads if p.strip()]
             WSPayloads._payloads_cache[filename] = payloads
             return payloads
         except FileNotFoundError:
