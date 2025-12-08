@@ -34,12 +34,29 @@ SQL Injection • XSS • Command Injection • XXE • SSRF • NoSQL Injection
 
 ## Installation
 
+### Option 1: pip (Recommended)
+
 ```bash
 pip install wshawk
 
 # Optional: For browser-based XSS verification
 playwright install chromium
 ```
+
+### Option 2: Docker
+
+```bash
+# Pull from Docker Hub
+docker pull wshawk/wshawk:latest
+
+# Run WSHawk
+docker run --rm wshawk/wshawk ws://target.com
+
+# Defensive validation
+docker run --rm wshawk/wshawk wshawk-defensive ws://target.com
+```
+
+See [Docker Guide](docs/DOCKER.md) for detailed usage.
 
 ## Quick Start
 

@@ -1,0 +1,239 @@
+# WSHawk Docker Guide
+
+## Quick Start
+
+### Pull from Docker Hub
+
+```bash
+docker pull wshawk/wshawk:latest
+```
+
+### Run WSHawk
+
+```bash
+# Basic scan
+docker run --rm wshawk/wshawk ws://target.com
+
+# Defensive validation
+docker run --rm wshawk/wshawk wshawk-defensive ws://target.com
+
+# Interactive mode
+docker run --rm -it wshawk/wshawk wshawk-interactive
+
+# Advanced scan with all features
+docker run --rm wshawk/wshawk wshawk-advanced ws://target.com --full
+```
+
+---
+
+## Building Locally
+
+```bash
+# Build the image
+docker build -t wshawk/wshawk:latest .
+
+# Run the image
+docker run --rm wshawk/wshawk --help
+```
+
+---
+
+## Usage Examples
+
+### 1. Basic WebSocket Scan
+
+```bash
+docker run --rm wshawk/wshawk ws://echo.websocket.org
+```
+
+### 2. Defensive Validation
+
+```bash
+docker run --rm wshawk/wshawk wshawk-defensive wss://secure-server.com
+```
+
+### 3. Save Reports
+
+```bash
+# Create reports directory
+mkdir -p reports
+
+# Run scan and save reports
+docker run --rm -v $(pwd)/reports:/app/reports wshawk/wshawk ws://target.com
+```
+
+### 4. Scan Local Server
+
+```bash
+# Use host network to access localhost
+docker run --rm --network host wshawk/wshawk ws://localhost:8765
+```
+
+### 5. Interactive Shell
+
+```bash
+# Get shell access inside container
+docker run --rm -it --entrypoint /bin/bash wshawk/wshawk
+
+# Then run commands
+wshawk ws://target.com
+wshawk-defensive ws://target.com
+```
+
+---
+
+## Docker Compose
+
+### Start Services
+
+```bash
+# Start WSHawk and test server
+docker-compose up -d
+
+# Run scan against test server
+docker-compose exec wshawk wshawk ws://vulnerable-server:8765
+
+# Stop services
+docker-compose down
+```
+
+### Custom Configuration
+
+Edit `docker-compose.yml` to customize:
+- Port mappings
+- Volume mounts
+- Environment variables
+- Network settings
+
+---
+
+## Environment Variables
+
+```bash
+# Set Python unbuffered output
+docker run --rm -e PYTHONUNBUFFERED=1 wshawk/wshawk ws://target.com
+
+# Set custom timeout
+docker run --rm -e TIMEOUT=30 wshawk/wshawk ws://target.com
+```
+
+---
+
+## Advanced Usage
+
+### With Playwright (Browser Testing)
+
+```bash
+# Install Playwright browsers in container
+docker run --rm -it wshawk/wshawk /bin/bash
+playwright install chromium
+wshawk-advanced ws://target.com --playwright
+```
+
+### Network Scanning
+
+```bash
+# Scan multiple targets
+docker run --rm wshawk/wshawk ws://target1.com
+docker run --rm wshawk/wshawk ws://target2.com
+
+# Use custom network
+docker network create wshawk-net
+docker run --rm --network wshawk-net wshawk/wshawk ws://target.com
+```
+
+### CI/CD Integration
+
+```yaml
+# .github/workflows/security-scan.yml
+name: WebSocket Security Scan
+
+on: [push, pull_request]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Run WSHawk
+        run: |
+          docker pull wshawk/wshawk:latest
+          docker run --rm wshawk/wshawk ws://staging-server.com
+```
+
+---
+
+## Troubleshooting
+
+### Permission Issues
+
+```bash
+# Run as current user
+docker run --rm --user $(id -u):$(id -g) wshawk/wshawk ws://target.com
+```
+
+### Network Issues
+
+```bash
+# Use host network
+docker run --rm --network host wshawk/wshawk ws://localhost:8765
+
+# Check container network
+docker run --rm wshawk/wshawk ip addr
+```
+
+### Volume Mount Issues
+
+```bash
+# Use absolute path
+docker run --rm -v /absolute/path/reports:/app/reports wshawk/wshawk ws://target.com
+```
+
+---
+
+## Image Information
+
+- **Base Image:** python:3.11-slim
+- **Size:** ~150MB (optimized multi-stage build)
+- **User:** Non-root (wshawk:1000)
+- **Entrypoint:** wshawk
+- **Working Directory:** /app
+
+---
+
+## Security Best Practices
+
+1. **Always use specific version tags**
+   ```bash
+   docker pull wshawk/wshawk:2.0.5
+   ```
+
+2. **Run as non-root user** (default)
+   ```bash
+   docker run --rm --user wshawk wshawk/wshawk ws://target.com
+   ```
+
+3. **Use read-only filesystem**
+   ```bash
+   docker run --rm --read-only wshawk/wshawk ws://target.com
+   ```
+
+4. **Limit resources**
+   ```bash
+   docker run --rm --memory=512m --cpus=1 wshawk/wshawk ws://target.com
+   ```
+
+---
+
+## Support
+
+- **GitHub:** https://github.com/noobforanonymous/wshawk
+- **Docker Hub:** https://hub.docker.com/r/wshawk/wshawk
+- **Issues:** https://github.com/noobforanonymous/wshawk/issues
+
+---
+
+## License
+
+MIT License - See LICENSE file for details

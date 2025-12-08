@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  wshawk:
+    build: .
+    image: wshawk/wshawk:latest
+    container_name: wshawk
+    # Network mode host for easier WebSocket testing
+    network_mode: host
+    # Mount current directory for reports
+    volumes:
+      - ./reports:/app/reports
+    # Override entrypoint for interactive use
+    entrypoint: /bin/bash
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # Example: Vulnerable WebSocket server for testing
+  vulnerable-server:
+    image: python:3.11-slim
+    container_name: wshawk-test-server
+    ports:
+      - "8765:8765"
+    volumes:
+      - ./examples:/app
+    working_dir: /app
+    command: python3 -m http.server 8765
+    networks:
+      - wshawk-network
+
+networks:
+  wshawk-network:
+    driver: bridge
