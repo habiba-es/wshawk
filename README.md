@@ -235,6 +235,7 @@ Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md)
 - **Issues:** [GitHub Issues](https://github.com/noobforanonymous/wshawk/issues)
 - **Documentation:** [docs/](docs/)
 - **Examples:** [examples/](examples/)
+- **Email:** support@rothackers.com
 
 ---
 
